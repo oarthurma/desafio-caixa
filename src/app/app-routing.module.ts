@@ -7,6 +7,7 @@ const routes: Routes = [
     path: 'login', // Quando a URL for /login... (Define o prefixo da URL)
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
+  { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
 ];
 
 @NgModule({

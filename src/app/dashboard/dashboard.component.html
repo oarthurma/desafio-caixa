@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Simulador de Investimento</mat-card-title>
+    <mat-card-subtitle>Descubra o retorno estimado</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form class="simulator-form">
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo de Investimento</mat-label>
+        <mat-select>
+          <mat-option value="CDB">CDB</mat-option>
+          <mat-option value="Fundo">Fundo Multimercado</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Valor a Investir (R$)</mat-label>
+        <input matInput type="number" placeholder="Ex: 1000" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Prazo (em meses)</mat-label>
+        <input matInput type="number" placeholder="Ex: 12" />
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary">Simular</button>
+  </mat-card-actions>
+</mat-card>
