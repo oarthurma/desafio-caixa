@@ -1,1 +1,60 @@
-<p>login works!</p>
+<div class="login-container">
+  <mat-card>
+    <mat-card-title>Login - Painel de Investimentos</mat-card-title>
+    <mat-card-subtitle>Acesse sua conta CAIXA</mat-card-subtitle>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-card-content>
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <input
+            matInput
+            placeholder="meu-email@mail.com.br"
+            formControlName="email"
+          />
+          <mat-error *ngIf="email?.hasError('required')">
+            E-mail é obrigatório.
+          </mat-error>
+          <mat-error *ngIf="email?.hasError('email')">
+            Formato de email inválido.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            formControlName="senha"
+          />
+
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            type="button"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+
+          <mat-error *ngIf="senha?.hasError('required')">
+            Senha é obrigatória.
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="loginForm.invalid"
+        >
+          Entrar
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
