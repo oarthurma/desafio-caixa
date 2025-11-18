@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { InvestmentService } from './services/investment.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +13,13 @@ export class DashboardComponent implements OnInit {
   // Declarando a "caixa" que vai guardar nosso formulário
   simulatorForm: FormGroup = null!;
 
+  resultadoSimulacao: any = null;
+
   // Injetando o "Construtor de Formulários" (FormBuilder)
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private investmentService: InvestmentService
+  ) {}
 
   // Inicializando o formulário no ngOnInit
   ngOnInit(): void {
@@ -27,11 +33,18 @@ export class DashboardComponent implements OnInit {
 
   // Criando o método que será chamado pelo botão "Simular"
   onSimular(): void {
-    // Por enquanto, vamos apenas verificar se o formulário é válido
-    // e mostrar os dados no console
+    this.resultadoSimulacao = null;
+
     if (this.simulatorForm.valid) {
-      console.log('Formulário Válido!');
-      console.log(this.simulatorForm.value);
+      console.log('Formulário Válido! Enviando para o serviço...');
+      this.investmentService
+        .simularInvestimento(this.simulatorForm.value)
+        .subscribe({
+          next: (resposta) => {
+            console.log('Resposta da API (Mockada):', resposta);
+            this.resultadoSimulacao = resposta;
+          },
+        });
     } else {
       console.log('Formulário Inválido');
     }
