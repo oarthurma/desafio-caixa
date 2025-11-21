@@ -1,120 +1,112 @@
 # 🏦 Portal do Investidor - Desafio Frontend
 
-![Angular](https://img.shields.io/badge/Angular-19-dd0031?style=for-the-badge&logo=angular)
-![Material Design](https://img.shields.io/badge/Material-Design-blue?style=for-the-badge&logo=materialdesign)
-![Status](https://img.shields.io/badge/Status-MVP%20Concluído-success?style=for-the-badge)
+🔗 Repositório completo no GitHub: [https://github.com/oarthurma/desafio-caixa](https://github.com/oarthurma/desafio-caixa)
 
-> ⚠️ **NOTA SOBRE O ENVIO:** > Devido à restrição de upload de 2MB deste sistema, este pacote contém apenas o código-fonte essencial (`src/`).
-> Para visualizar o histórico completo de commits, branches e a documentação detalhada, acesse o repositório completo no GitHub:
->
-> 👉 **[https://github.com/oarthurma/desafio-caixa](https://github.com/oarthurma/desafio-caixa)**
+> ⚠️ Este pacote contém apenas os arquivos essenciais (`src/`, `angular.json`, `package.json`, `tsconfig.json`) para respeitar o limite de 2MB exigido pelo sistema da CAIXA.
 
 ---
 
 ## 📋 Sobre o Projeto
 
-Solução desenvolvida para o Desafio Técnico de Frontend da **CAIXA**, simulando o ambiente digital do **Portal do Investidor**. A aplicação foca na jornada do cliente bancário: autenticação segura, análise de perfil e simulação de produtos financeiros.
+Solução desenvolvida para o Desafio Técnico de Frontend da **CAIXA**, simulando o ambiente digital do **Portal do Investidor**. A aplicação permite que o cliente:
 
-### ✅ Critérios de Avaliação (Status do Projeto)
+- Faça login com autenticação simulada
+- Visualize seu perfil de risco (Conservador, Moderado, Agressivo)
+- Veja produtos recomendados com base no perfil
+- Simule investimentos com retorno estimado
 
-Mapeamento das funcionalidades conforme solicitado no desafio:
+---
 
-| Critério do Desafio         | Status       | Detalhes                                                     |
-| :-------------------------- | :----------- | :----------------------------------------------------------- |
-| **Funcionalidade Completa** | ✅ Concluído | Fluxo de Login -> Dashboard -> Simulação 100% funcional.     |
-| **Código Limpo e Modular**  | ✅ Concluído | Arquitetura baseada em Serviços e Componentes reutilizáveis. |
-| **Integração com API**      | ✅ Concluído | Mock de serviços (`RxJS`) simulando latência real.           |
-| **Visualização de Dados**   | ✅ Adaptado  | Uso de Listas e Cards (MVP) focando em clareza imediata.     |
-| **Responsividade**          | ✅ Concluído | Layout adaptável para Mobile e Desktop (Grid System).        |
-| **Testes (80%)**            | 🔄 Roadmap   | Estrutura configurada, cobertura planejada para v2.0.        |
+## ✅ Critérios de Avaliação (Status do Projeto)
+
+| Critério do Desafio     | Status          | Detalhes                                                    |
+| ----------------------- | --------------- | ----------------------------------------------------------- |
+| Funcionalidade Completa | ✅ Concluído    | Fluxo Login → Dashboard → Simulação 100% funcional          |
+| Código Limpo e Modular  | ✅ Concluído    | Arquitetura baseada em serviços e componentes reutilizáveis |
+| Integração com API      | ✅ Concluído    | Serviços mockados com `RxJS` simulando latência real        |
+| Visualização de Dados   | ✅ Concluído    | Listas informativas com destaque visual e badges de risco   |
+| Responsividade          | ✅ Concluído    | Grid adaptável para mobile e desktop                        |
+| Acessibilidade          | ✅ Concluído    | Contraste, foco e uso de Angular Material                   |
+| Testes (80%)            | 🔄 Em progresso | Estrutura configurada, cobertura prevista para v2.0         |
 
 ---
 
 ## 🎯 Decisões de Arquitetura & Design
 
-Para entregar um MVP robusto e alinhado com ambientes corporativos, adotamos:
-
-1.  **Padrão NgModule (Clássico):**
-
-    - Optamos pela arquitetura baseada em Módulos (`DashboardModule`, `AppModule`) em vez de _Standalone_.
-    - **Motivo:** Maior estabilidade, facilidade de manutenção em grandes equipes e alinhamento com legados corporativos bancários.
-
-2.  **Identidade Visual Oficial:**
-
-    - Aplicação estrita da paleta institucional:
-      - 🔵 **Azul Institucional:** `#0066B3` (Pantone 287C)
-      - 🟠 **Laranja Institucional:** `#F7941E` (Pantone 151C)
-      - ⚪ **Cinza Base:** `#F1F2F2`
-
-3.  **Acessibilidade e UX:**
-    - Feedback visual de carregamento (Spinners) em todas as ações assíncronas.
-    - Formulários com validação reativa e mensagens de erro claras (`ReactiveForms`).
-    - Contraste de cores ajustado para leitura confortável.
+- **NgModules**: Estrutura baseada em `AppModule` e `DashboardModule` para maior escalabilidade
+- **Identidade Visual CAIXA**: Paleta institucional aplicada via SCSS
+- **UX e Acessibilidade**:
+  - Feedback visual com spinners
+  - Formulários com validação reativa
+  - Contraste de cores ajustado
 
 ---
 
 ## ✨ Funcionalidades Principais
 
-### 🔐 Autenticação & Segurança
+### 🔐 Autenticação
 
-- Login seguro com validação de campos.
-- Simulação de Token JWT e Guardas de Rota (`AuthGuard`) protegendo o acesso ao painel.
+- Login com validação de campos (`ReactiveForms`)
+- Simulação de token JWT
+- Proteção de rotas com `AuthGuard`
 
-### 📊 Dashboard & Simulação
+### 📊 Dashboard
 
-- **Comunicação Pai-Filho:** O usuário seleciona um produto na lista (`ProductList`) e o simulador (`Dashboard`) recebe os dados automaticamente via `@Output`.
-- **Simulador Real:** Cálculo de rentabilidade com projeção de valores baseada em inputs do usuário.
-- **Perfil Dinâmico:** Carregamento de dados mockados simulando backend.
+- Lista de produtos recomendados com integração ao serviço
+- Emissão de eventos com `@Output()` para simulação
+- Exibição de perfil de risco com dados mockados
+
+### 💰 Simulador de Investimentos
+
+- Inputs: valor, prazo, tipo
+- Output: retorno estimado com base no tipo de produto
+- Comunicação entre componentes via `EventEmitter`
 
 ---
 
 ## 🛠️ Estrutura de Pastas
 
 ```text
-src/app/dashboard/
-├── components/
-│   ├── product-list/    # Lista de recomendações (Smart Component)
-│   ├── risk-profile/    # Exibição de perfil
-├── services/            # Lógica de negócio e chamadas de API (Mock)
-├── models/              # Interfaces (Tipagem forte)
-└── dashboard.component  # Controlador principal e Simulador
+src/app/
+├── auth/                 # Tela de login
+├── dashboard/
+│   ├── components/
+│   │   ├── product-list/        # Lista de produtos
+│   │   ├── risk-profile/        # Perfil de risco
+│   │   └── investment-simulator/ # Simulador
+│   ├── services/                # Serviços mockados
+│   └── models/                  # Interfaces de dados
 ```
 
 ---
 
 ## 🚀 Como Rodar o Projeto (Localmente)
 
-Como a pasta `node_modules` não foi incluída no upload (para respeitar o limite de tamanho), siga os passos abaixo:
+```bash
+# Instale as dependências:
+npm install
 
-1. **Instale as dependências:**
+# Execute o servidor:
+ng serve
 
-   ```bash
-   npm install
-   ```
+# Acesse no navegador:
+http://localhost:4200/
 
-2. **Execute o servidor:**
+# Credenciais de Acesso:
+# Usuário: cliente@exemplo.com
+# Senha:   123456
 
-   ```bash
-   ng serve
-   ```
-
-3. **Acesse:**
-   Abra `http://localhost:4200/`.
-
-**Credenciais de Acesso:**
-
-- **Usuário:** `cliente@exemplo.com`
-- **Senha:** `123456`
+# Observação:
+# As chamadas à API são simuladas com RxJS (of + delay) via InvestmentService.
+```
 
 ---
 
-## 🔮 Próximos Passos (Roadmap v2.0)
+## 🔮 Roadmap v2.0
 
-Para a próxima sprint de evolução, estão planejados:
-
-- [ ] Implementação de gráficos de evolução patrimonial (`ngx-charts`).
-- [ ] Testes Unitários com cobertura de 80% (Jasmine/Karma).
-- [ ] Migração das fontes CDN para arquivos locais (segurança de intranet).
+- [ ] Gráficos de evolução patrimonial com `ngx-charts`
+- [ ] Testes unitários com cobertura de 80%
+- [ ] Migração de fontes CDN para arquivos locais (segurança de intranet)
 
 ---
 
