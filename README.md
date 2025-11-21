@@ -1,59 +1,116 @@
-# DesafioCaixa
+# 🏦 Painel de Investimentos - CAIXA (Desafio Frontend)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+![Angular](https://img.shields.io/badge/Angular-19-dd0031?style=for-the-badge&logo=angular)
+![Material Design](https://img.shields.io/badge/Material-Design-blue?style=for-the-badge&logo=materialdesign)
+![Status](https://img.shields.io/badge/Status-MVP%20Concluído-success?style=for-the-badge)
 
-## Development server
+> Aplicação web desenvolvida para análise de perfil de investidor e simulação de produtos financeiros, focada em experiência do usuário e arquitetura limpa.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## 📋 Sobre o Projeto
+
+Este projeto é uma solução para o **Desafio Técnico de Frontend**, simulando o ambiente digital da **CAIXA**. O objetivo é oferecer uma interface intuitiva onde o cliente possa visualizar seu perfil de risco, receber recomendações de produtos (CDB, Fundos, Tesouro) e simular rendimentos em tempo real.
+
+### 🎯 Objetivos do MVP (Minimum Viable Product)
+
+Adotamos uma estratégia de **MVP Enxuto** para esta entrega:
+
+- **Foco:** Funcionalidade crítica e fluxo do usuário (Login -> Dashboard -> Simulação).
+- **Arquitetura:** Prioridade para organização de código, tipagem forte e comunicação entre componentes.
+- **Decisão de Design:** Substituição temporária de gráficos complexos por listas informativas para garantir entrega rápida e robusta.
+
+---
+
+## ✨ Funcionalidades Implementadas
+
+### 🔐 Autenticação
+
+- **Login Seguro:** Interface de login com validação de formulário.
+- **Token Management:** Simulação de autenticação via JWT (armazenamento local).
+- **Guarda de Rotas:** Redirecionamento automático e proteção de rotas.
+
+### 📊 Dashboard Interativo
+
+- **Perfil de Risco:** Carregamento dinâmico do perfil do cliente (Conservador, Moderado, Agressivo) via Service Mock.
+- **Lista de Oportunidades:** Exibição de produtos recomendados (Cards) com dados de rentabilidade e risco.
+- **Loading States:** Feedback visual (spinners) durante as chamadas assíncronas.
+
+### 💰 Simulador Inteligente
+
+- **Cálculo em Tempo Real:** Simulação de investimentos baseada em aporte, prazo e tipo.
+- **Integração Fluida:** O usuário pode clicar em um produto da lista e o simulador é preenchido automaticamente (Comunicação Filho -> Pai via `@Output`).
+- **Feedback Visual:** Exibição clara do valor final bruto e rentabilidade estimada.
+
+---
+
+## 🛠️ Arquitetura e Tecnologias
+
+O projeto foi construído utilizando **Angular 19** no padrão **NgModule (Clássico/Corporativo)**, garantindo estrutura modular e escalável.
+
+- **Core:** Angular 19, TypeScript.
+- **UI/UX:** Angular Material, SCSS (Sass), Grid Layout Responsivo.
+- **Gerenciamento de Estado/Dados:** RxJS (Observables, `of`, `delay` para simulação de latência de rede).
+- **Formulários:** Reactive Forms (validações complexas e dinâmicas).
+- **Mock Server:** Serviços frontend simulando respostas de API conforme especificações do desafio.
+
+### Estrutura de Pastas
+
+```text
+src/app/dashboard/
+├── components/
+│   ├── product-list/    # Lista de recomendações (Smart Component)
+│   ├── risk-profile/    # Exibição de perfil
+├── services/            # Lógica de negócio e chamadas de API (Mock)
+├── models/              # Interfaces (Tipagem forte)
+└── dashboard.module.ts  # Centralizador do módulo (NgModules)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🚀 Como Rodar o Projeto
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Certifique-se de ter o **Node.js** e o **Angular CLI** instalados.
 
-```bash
-ng generate component component-name
-```
+1. **Clone o repositório:**
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+   ```bash
+   git clone https://github.com/seu-usuario/desafio-caixa.git
+   ```
 
-```bash
-ng generate --help
-```
+2. **Instale as dependências:**
 
-## Building
+   ```bash
+   npm install
+   ```
 
-To build the project run:
+3. **Execute o servidor de desenvolvimento:**
 
-```bash
-ng build
-```
+   ```bash
+   ng serve
+   ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+4. **Acesse no navegador:**
+   Abra `http://localhost:4200/`.
 
-## Running unit tests
+**Credenciais para Teste:**
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- **Email:** `cliente@exemplo.com`
+- **Senha:** `123456`
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+## 🔮 Próximos Passos (Roadmap)
 
-For end-to-end (e2e) testing, run:
+Para evoluir este MVP para uma versão 1.0 completa, o roadmap técnico inclui:
 
-```bash
-ng e2e
-```
+1.  [ ] **Visualização de Dados:** Implementação de gráficos (`ngx-charts` ou `Chart.js`) para evolução patrimonial.
+2.  [ ] **Histórico:** Implementação da tabela de histórico de investimentos (`GET /investimentos`).
+3.  [ ] **Testes Unitários:** Cobertura de testes com Jasmine/Karma focando em Services e Validadores (Meta: 80%).
+4.  [ ] **Acessibilidade:** Melhorias em etiquetas ARIA e navegação por teclado.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+<div align="center">
+  Desenvolvido com 💙 e Angular
+</div>

@@ -1,0 +1,44 @@
+<div class="product-list-container">
+  <div class="loading-container" *ngIf="isLoading">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Buscando melhores oportunidades...</p>
+  </div>
+
+  <div class="grid-cards" *ngIf="!isLoading">
+    <mat-card class="investment-card" *ngFor="let product of products">
+      <mat-card-header>
+        <div mat-card-avatar class="icon-avatar">
+          {{ product.tipo.charAt(0) }}
+        </div>
+        <mat-card-title>{{ product.nome }}</mat-card-title>
+        <mat-card-subtitle>{{ product.tipo }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="info-row">
+          <span class="label">Rentabilidade Anual</span>
+          <span class="value highlight">{{
+            product.rentabilidade | percent : "1.2-2"
+          }}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="label">Risco</span>
+          <span
+            class="badge"
+            [class.low-risk]="product.risco === 'Baixo'"
+            [class.high-risk]="product.risco === 'Alto'"
+          >
+            {{ product.risco }}
+          </span>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-button color="primary" (click)="onSimulate(product)">
+          SIMULAR
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

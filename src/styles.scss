@@ -1,4 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+/* Configuração Básica de Cores */
+:root {
+  --caixa-azul: #0066b3; /* A cor oficial */
+  --caixa-laranja: #f7941e; /* A cor de destaque */
+  --caixa-cinza-bg: #f1f2f2; /* Fundo cinza claro */
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Garante que o app ocupe a tela toda */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--caixa-cinza-bg);
+}
+
+/* Classes Utilitárias (para usar no HTML) */
+.text-azul {
+  color: var(--caixa-azul);
+}
+.text-laranja {
+  color: var(--caixa-laranja);
+}
+
+/* Ajuste do Card de Login */
+mat-card {
+  border-radius: 8px !important;
+}

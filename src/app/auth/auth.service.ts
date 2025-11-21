@@ -1,43 +1,40 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs'; // 1. Importar o 'tap'
+import { Observable, of } from 'rxjs'; // 'of' para criar dados falso
+import { delay, tap } from 'rxjs/operators'; // 'delay' para simular tempo de rede
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  // 2. Definir a URL base da nossa API (backend)
-  // (Vamos criar uma URL 'mock' por enquanto)
-  private API_URL = 'http://localhost:3000'; // (Simulação de backend)
+  constructor() {}
 
-  // 3. Injetar o HttpClient
-  constructor(private http: HttpClient) {}
+  // Método de Login (MOCK / SIMULADO)
 
-  /**
-   * Método de Login
-   * Envia email/senha para a API e espera um token de volta.
-   */
   login(credentials: { email: string; senha: string }): Observable<any> {
-    // 4. O corpo da requisição que a API espera [cite: 111]
-    const body = {
-      email: credentials.email,
-      senha: credentials.senha,
+    console.log('Simulado login para:', credentials.email);
+
+    const mockResponse = {
+      token: 'eyJhbGciOiJIUzI1NilsInR5cCl6lkpXVCJ9...', // Token JWT fake
+      clientId: 123, // ID do cliente
     };
 
-    // 5. Endpoint de login
-    const loginUrl = `${this.API_URL}/autenticacao/login`;
+    // Retornamos um Observable criado com 'of' (cria um fluxo de dados imediado)
+    return of(mockResponse).pipe(
+      delay(1000), // Finge que a internet demorou 1s
 
-    // 6. Faz a chamada POST e retorna o Observable
-    return this.http.post<any>(loginUrl, body).pipe(
-      // 7. 'tap' nos permite "espiar" a resposta sem interrompê-la
       tap((response) => {
-        // 8. Se a API retornar um token, salvamos no localStorage
-        if (response && response.token) {
-          localStorage.setItem('authToken', response.token);
-          localStorage.setItem('clientId', response.clienteld); // [cite: 120]
-          console.log('Token salvo!', response.token);
-        }
+        localStorage.setItem('authToken', response.token);
+        localStorage.setItem('clientId', response.clientId.toString());
+        console.log('Login realizado com sucesso! Token salvo');
       })
     );
+  }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('authToken');
+  }
+
+  logout(): void {
+    localStorage.clear();
   }
 }

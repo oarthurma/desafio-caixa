@@ -1,4 +1,9 @@
-<mat-card>
+<div style="margin-bottom: 20px">
+  <h1>Painel de Investimentos</h1>
+  <p>Bem-vindo ao seu gerenciador financeiro CAIXA.</p>
+</div>
+
+<mat-card class="mb-4">
   <mat-card-header>
     <mat-card-title>Simulador de Investimento</mat-card-title>
     <mat-card-subtitle>Descubra o retorno estimado</mat-card-subtitle>
@@ -10,64 +15,86 @@
       [formGroup]="simulatorForm"
       (ngSubmit)="onSimular()"
     >
-      <mat-form-field appearance="fill">
-        <mat-label>Tipo de Investimento</mat-label>
-        <mat-select formControlName="tipo">
-          <mat-option value="CDB">CDB</mat-option>
-          <mat-option value="Fundo">Fundo Multimercado</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px">
+        <mat-form-field appearance="fill" style="flex: 1">
+          <mat-label>Tipo de Investimento</mat-label>
+          <mat-select formControlName="tipo">
+            <mat-option value="CDB">CDB</mat-option>
+            <mat-option value="Fundo">Fundo Multimercado</mat-option>
+            <mat-option value="Tesouro">Tesouro Direto</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Valor a Investir (R$)</mat-label>
-        <input
-          matInput
-          type="number"
-          placeholder="Ex: 1000"
-          formControlName="valor"
-        />
-      </mat-form-field>
+        <mat-form-field appearance="fill" style="flex: 1">
+          <mat-label>Valor a Investir (R$)</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Ex: 1000"
+            formControlName="valor"
+          />
+        </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Prazo (em meses)</mat-label>
-        <input
-          matInput
-          type="number"
-          placeholder="Ex: 12"
-          formControlName="prazoMeses"
-        />
-      </mat-form-field>
-      <mat-card-actions>
+        <mat-form-field appearance="fill" style="flex: 1">
+          <mat-label>Prazo (meses)</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Ex: 12"
+            formControlName="prazoMeses"
+          />
+        </mat-form-field>
+      </div>
+
+      <mat-card-actions align="end">
         <button
           mat-raised-button
           color="primary"
           [disabled]="!simulatorForm.valid"
           type="submit"
         >
-          Simular
+          Simular Agora
         </button>
       </mat-card-actions>
     </form>
   </mat-card-content>
 </mat-card>
 
-<mat-card *ngIf="resultadoSimulacao" class="result-card">
+<mat-card
+  *ngIf="resultadoSimulacao"
+  class="result-card"
+  style="margin-bottom: 24px; background-color: #f5f5f5"
+>
   <mat-card-header>
     <mat-card-title>Resultado da Simulação</mat-card-title>
   </mat-card-header>
-
   <mat-card-content>
     <p>
       <strong>Valor Final Bruto: </strong>
       {{ resultadoSimulacao?.valorFinal | currency : "BRL" }}
     </p>
     <p>
-      <strong>Rentabilidade (no período): </strong>
+      <strong>Rentabilidade: </strong>
       {{ resultadoSimulacao?.rentabilidade | percent : "1.2-2" }}
     </p>
-    <p>
-      <strong>Detalhes: </strong>
-      {{ resultadoSimulacao?.detalhes }}
-    </p>
+    <p><strong>Detalhes: </strong> {{ resultadoSimulacao?.detalhes }}</p>
   </mat-card-content>
 </mat-card>
+
+<mat-divider style="margin: 24px 0"></mat-divider>
+
+<div class="risk-container" style="margin-bottom: 24px">
+  <h2>Sua Análise de Perfil</h2>
+  <app-risk-profile></app-risk-profile>
+</div>
+
+<mat-divider style="margin: 24px 0"></mat-divider>
+
+<div class="products-container">
+  <h2>Produtos Recomendados para Você</h2>
+  <p style="color: #666; margin-bottom: 16px">Baseado no seu perfil Moderado</p>
+
+  <app-product-list
+    (selectProduct)="onProductSelected($event)"
+  ></app-product-list>
+</div>

@@ -1,0 +1,92 @@
+.product-list-container {
+  padding: 16px;
+}
+
+// Centraliza o spinner no meio da tela/área
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  gap: 16px;
+  color: #666;
+}
+
+// Grid Responsivo Mágico
+.grid-cards {
+  display: grid;
+  // Cria colunas automaticamente:
+  // Mínimo de 300px por card. Se couber mais, ele estica (1fr).
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.investment-card {
+  // Pequena elevação ao passar o mouse
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .icon-avatar {
+    background-color: #005ca9; // Azul CAIXA
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  mat-card-content {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 8px;
+
+  .label {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .value {
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .highlight {
+    color: #005ca9; // Azul destaque
+    font-weight: bold;
+  }
+}
+
+// Badges de Risco
+.badge {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  background-color: #e0e0e0; // Cor padrão (Médio)
+  color: #333;
+
+  &.low-risk {
+    background-color: #e8f5e9; // Verde claro
+    color: #2e7d32;
+  }
+
+  &.high-risk {
+    background-color: #ffebee; // Vermelho claro
+    color: #c62828;
+  }
+}

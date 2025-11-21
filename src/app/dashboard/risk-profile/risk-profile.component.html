@@ -1,0 +1,20 @@
+<div *ngIf="riskProfile; else loading">
+  <mat-card class="risk-card">
+    <mat-card-header>
+      <mat-card-title>
+        Perfil: <span class="highlight">{{ riskProfile.perfil }}</span>
+      </mat-card-title>
+      <mat-card-subtitle
+        >Pontuação: {{ riskProfile.pontuacao }}</mat-card-subtitle
+      >
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>{{ riskProfile.descricao }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template #loading>
+  <p>Analisando seu perfil financeiro...</p>
+</ng-template>

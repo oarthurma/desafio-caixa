@@ -1,52 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InvestmentService } from './services/investment.service';
+// Precisamos importar o modelo para saber o que é 'Product'
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: false,
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss',
+  styleUrls: ['./dashboard.component.scss'],
+  standalone: false,
 })
-// Implementando a interface OnInit
 export class DashboardComponent implements OnInit {
-  // Declarando a "caixa" que vai guardar nosso formulário
-  simulatorForm: FormGroup = null!;
-
+  simulatorForm: FormGroup;
   resultadoSimulacao: any = null;
 
-  // Injetando o "Construtor de Formulários" (FormBuilder)
   constructor(
     private fb: FormBuilder,
     private investmentService: InvestmentService
-  ) {}
-
-  // Inicializando o formulário no ngOnInit
-  ngOnInit(): void {
+  ) {
     this.simulatorForm = this.fb.group({
-      // Nossos 3 campos do HTML, com validação básica
-      tipo: [null, [Validators.required]],
-      valor: [null, [Validators.required, Validators.min(1)]],
-      prazoMeses: [null, [Validators.required, Validators.min(1)]],
+      tipo: ['CDB', Validators.required],
+      valor: [1000, [Validators.required, Validators.min(100)]],
+      prazoMeses: [12, [Validators.required, Validators.min(1)]],
     });
   }
 
-  // Criando o método que será chamado pelo botão "Simular"
-  onSimular(): void {
-    this.resultadoSimulacao = null;
+  ngOnInit(): void {}
 
+  onSimular(): void {
     if (this.simulatorForm.valid) {
-      console.log('Formulário Válido! Enviando para o serviço...');
       this.investmentService
         .simularInvestimento(this.simulatorForm.value)
         .subscribe({
-          next: (resposta) => {
-            console.log('Resposta da API (Mockada):', resposta);
-            this.resultadoSimulacao = resposta;
+          next: (res) => {
+            this.resultadoSimulacao = res;
           },
+          error: (err) => console.error('Erro', err),
         });
-    } else {
-      console.log('Formulário Inválido');
     }
+  }
+
+  // <--- NOVO MÉTODO: Recebe o produto do filho
+  onProductSelected(product: Product): void {
+    // 1. Atualiza o formulário com o Tipo do produto clicado
+    this.simulatorForm.patchValue({
+      tipo: product.tipo,
+    });
+
+    // 2. (Opcional) Rola a tela suavemente para o topo (onde está o simulador)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

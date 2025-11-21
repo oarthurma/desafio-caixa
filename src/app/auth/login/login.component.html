@@ -1,15 +1,24 @@
 <div class="login-container">
-  <mat-card>
-    <mat-card-title>Login - Painel de Investimentos</mat-card-title>
-    <mat-card-subtitle>Acesse sua conta CAIXA</mat-card-subtitle>
+  <mat-card class="login-card">
+    <mat-card-header class="header-centralizado">
+      <div mat-card-avatar class="logo-container">
+        <img
+          src="/assets/images/logo-caixa.png"
+          alt="Logo CAIXA"
+          class="logo-img"
+        />
+      </div>
+      <mat-card-title class="text-azul">Portal do Investidor</mat-card-title>
+      <mat-card-subtitle>Simulador e Gestão de Ativos</mat-card-subtitle>
+    </mat-card-header>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <mat-card-content>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>E-mail</mat-label>
           <input
             matInput
-            placeholder="meu-email@mail.com.br"
+            placeholder="cliente@exemplo.com"
             formControlName="email"
           />
           <mat-error *ngIf="email?.hasError('required')">
@@ -20,7 +29,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Senha</mat-label>
           <input
             matInput
@@ -45,14 +54,15 @@
         </mat-form-field>
       </mat-card-content>
 
-      <mat-card-actions>
+      <mat-card-actions align="end">
         <button
-          mat-raised-button
+          mat-flat-button
           color="primary"
           type="submit"
           [disabled]="loginForm.invalid"
+          class="btn-entrar"
         >
-          Entrar
+          Acessar Painel
         </button>
       </mat-card-actions>
     </form>
