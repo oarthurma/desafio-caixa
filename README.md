@@ -7,7 +7,7 @@
 > ⚠️ **NOTA SOBRE O ENVIO:** > Devido à restrição de upload de 2MB deste sistema, este pacote contém apenas o código-fonte essencial (`src/`).
 > Para visualizar o histórico completo de commits, branches e a documentação detalhada, acesse o repositório completo no GitHub:
 >
-> 👉 **[COLOQUE_SEU_LINK_DO_GITHUB_AQUI]**
+> 👉 ** https://github.com/oarthurma/desafio-caixa **
 
 ---
 
