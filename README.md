@@ -17,21 +17,17 @@ Solução desenvolvida para o Desafio Técnico de Frontend da **CAIXA**, simulan
 
 ---
 
-## ✅ Critérios de Avaliação (Status do Projeto)
+### 🎯 Objetivos do MVP (Minimum Viable Product)
 
-| Critério do Desafio     | Status          | Detalhes                                                    |
-| ----------------------- | --------------- | ----------------------------------------------------------- |
-| Funcionalidade Completa | ✅ Concluído    | Fluxo Login → Dashboard → Simulação 100% funcional          |
-| Código Limpo e Modular  | ✅ Concluído    | Arquitetura baseada em serviços e componentes reutilizáveis |
-| Integração com API      | ✅ Concluído    | Serviços mockados com `RxJS` simulando latência real        |
-| Visualização de Dados   | ✅ Concluído    | Listas informativas com destaque visual e badges de risco   |
-| Responsividade          | ✅ Concluído    | Grid adaptável para mobile e desktop                        |
-| Acessibilidade          | ✅ Concluído    | Contraste, foco e uso de Angular Material                   |
-| Testes (80%)            | 🔄 Em progresso | Estrutura configurada, cobertura prevista para v2.0         |
+Adotamos uma estratégia de **MVP Enxuto** para esta entrega:
+
+- **Foco:** Funcionalidade crítica e fluxo do usuário (Login -> Dashboard -> Simulação).
+- **Arquitetura:** Prioridade para organização de código, tipagem forte e comunicação entre componentes.
+- **Decisão de Design:** Substituição temporária de gráficos complexos por listas informativas para garantir entrega rápida e robusta.
 
 ---
 
-## 🎯 Decisões de Arquitetura & Design
+## ⚙️ Decisões de Arquitetura & Design
 
 - **NgModules**: Estrutura baseada em `AppModule` e `DashboardModule` para maior escalabilidade
 - **Identidade Visual CAIXA**: Paleta institucional aplicada via SCSS
@@ -102,11 +98,13 @@ http://localhost:4200/
 
 ---
 
-## 🔮 Roadmap v2.0
+## 🔮 Próximos Passos (Roadmap)
 
-- [ ] Integração com histórico de investimentos (`GET /investimentos/{clienteId}`)
-- [ ] Implementação de gráficos de evolução patrimonial (ngx-charts/Chart.js)
-- [ ] Testes unitários com cobertura de 80% (Jasmine/Karma)
+Para evoluir este MVP para uma versão 1.0 completa, o roadmap técnico inclui:
+
+- [ ] Visualização de Dados: Implementação de gráficos (ngx-charts ou Chart.js) para evolução patrimonial.
+- [ ] Histórico: Implementação da tabela de histórico de investimentos (GET /investimentos).
+- [ ] Testes Unitários: Cobertura de testes com Jasmine/Karma focando em Services e Validadores (Meta: 80%).
 
 ---
 
