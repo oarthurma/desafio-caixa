@@ -1,58 +1,60 @@
-# 🏦 Painel de Investimentos - CAIXA (Desafio Frontend)
+# 🏦 Portal do Investidor - Desafio Frontend
 
 ![Angular](https://img.shields.io/badge/Angular-19-dd0031?style=for-the-badge&logo=angular)
 ![Material Design](https://img.shields.io/badge/Material-Design-blue?style=for-the-badge&logo=materialdesign)
 ![Status](https://img.shields.io/badge/Status-MVP%20Concluído-success?style=for-the-badge)
 
-> Aplicação web desenvolvida para análise de perfil de investidor e simulação de produtos financeiros, focada em experiência do usuário e arquitetura limpa.
+> ⚠️ **NOTA SOBRE O ENVIO:** > Devido à restrição de upload de 2MB deste sistema, este pacote contém apenas o código-fonte essencial (`src/`).
+> Para visualizar o histórico completo de commits, branches e a documentação detalhada, acesse o repositório completo no GitHub:
+>
+> 👉 **[COLOQUE_SEU_LINK_DO_GITHUB_AQUI]**
 
 ---
 
 ## 📋 Sobre o Projeto
 
-Este projeto é uma solução para o **Desafio Técnico de Frontend**, simulando o ambiente digital da **CAIXA**. O objetivo é oferecer uma interface intuitiva onde o cliente possa visualizar seu perfil de risco, receber recomendações de produtos (CDB, Fundos, Tesouro) e simular rendimentos em tempo real.
+Solução desenvolvida para o Desafio Técnico de Frontend, simulando o ambiente digital do **Portal do Investidor**. A aplicação foca na jornada do cliente bancário: autenticação, análise de perfil e simulação de produtos financeiros (CDB, Fundos, Tesouro).
 
-### 🎯 Objetivos do MVP (Minimum Viable Product)
+### 🎯 Decisões de Arquitetura & Design
 
-Adotamos uma estratégia de **MVP Enxuto** para esta entrega:
+Para entregar um MVP robusto e alinhado com ambientes corporativos, adotamos:
 
-- **Foco:** Funcionalidade crítica e fluxo do usuário (Login -> Dashboard -> Simulação).
-- **Arquitetura:** Prioridade para organização de código, tipagem forte e comunicação entre componentes.
-- **Decisão de Design:** Substituição temporária de gráficos complexos por listas informativas para garantir entrega rápida e robusta.
+1.  **Padrão NgModule (Clássico):**
+
+    - Embora o Angular 19 incentive _Standalone Components_, optamos pela arquitetura baseada em Módulos (`DashboardModule`, `AppModule`).
+    - **Motivo:** Maior estabilidade, facilidade de manutenção em grandes equipes e alinhamento com legados corporativos comuns em instituições financeiras.
+
+2.  **Identidade Visual Oficial:**
+
+    - Utilização estrita da paleta institucional:
+      - 🔵 **Azul Institucional:** `#0066B3` (Pantone 287C)
+      - 🟠 **Laranja Institucional:** `#F7941E` (Pantone 151C)
+      - ⚪ **Cinza Base:** `#F1F2F2`
+
+3.  **Estratégia de MVP Enxuto:**
+    - Foco total na funcionalidade crítica (Login -> Simulação).
+    - Substituição estratégica de gráficos complexos por listas informativas para garantir performance e entrega dentro do prazo (Time-to-Market).
 
 ---
 
-## ✨ Funcionalidades Implementadas
+## ✨ Funcionalidades
 
-### 🔐 Autenticação
+### 🔐 Autenticação & Segurança
 
-- **Login Seguro:** Interface de login com validação de formulário.
-- **Token Management:** Simulação de autenticação via JWT (armazenamento local).
-- **Guarda de Rotas:** Redirecionamento automático e proteção de rotas.
+- Interface de login com validação reativa (`ReactiveForms`).
+- Simulação de Token JWT e Guardas de Rota (`AuthGuard`) protegendo o acesso ao painel.
 
-### 📊 Dashboard Interativo
+### 📊 Dashboard & Simulação
 
-- **Perfil de Risco:** Carregamento dinâmico do perfil do cliente (Conservador, Moderado, Agressivo) via Service Mock.
-- **Lista de Oportunidades:** Exibição de produtos recomendados (Cards) com dados de rentabilidade e risco.
-- **Loading States:** Feedback visual (spinners) durante as chamadas assíncronas.
-
-### 💰 Simulador Inteligente
-
-- **Cálculo em Tempo Real:** Simulação de investimentos baseada em aporte, prazo e tipo.
-- **Integração Fluida:** O usuário pode clicar em um produto da lista e o simulador é preenchido automaticamente (Comunicação Filho -> Pai via `@Output`).
-- **Feedback Visual:** Exibição clara do valor final bruto e rentabilidade estimada.
+- **Comunicação entre Componentes:** O usuário seleciona um produto na lista e o simulador recebe os dados automaticamente via `@Output` (Event Emitter).
+- **Feedback Visual:** Spinners de carregamento e tratamento de estados assíncronos com RxJS (`of`, `delay`).
+- **Simulador Real:** Cálculo de rentabilidade com projeção de valores baseada em inputs do usuário.
 
 ---
 
 ## 🛠️ Arquitetura e Tecnologias
 
-O projeto foi construído utilizando **Angular 19** no padrão **NgModule (Clássico/Corporativo)**, garantindo estrutura modular e escalável.
-
-- **Core:** Angular 19, TypeScript.
-- **UI/UX:** Angular Material, SCSS (Sass), Grid Layout Responsivo.
-- **Gerenciamento de Estado/Dados:** RxJS (Observables, `of`, `delay` para simulação de latência de rede).
-- **Formulários:** Reactive Forms (validações complexas e dinâmicas).
-- **Mock Server:** Serviços frontend simulando respostas de API conforme especificações do desafio.
+O projeto foi construído utilizando **Angular 19** no padrão **NgModule**, garantindo estrutura modular.
 
 ### Estrutura de Pastas
 
@@ -68,49 +70,43 @@ src/app/dashboard/
 
 ---
 
-## 🚀 Como Rodar o Projeto
+## 🚀 Como Rodar o Projeto (Localmente)
 
-Certifique-se de ter o **Node.js** e o **Angular CLI** instalados.
+Como a pasta `node_modules` não foi incluída no upload (para respeitar o limite de tamanho), siga os passos abaixo:
 
-1. **Clone o repositório:**
-
-   ```bash
-   git clone https://github.com/seu-usuario/desafio-caixa.git
-   ```
-
-2. **Instale as dependências:**
+1. **Instale as dependências:**
+   É necessário ter o Node.js instalado. Na raiz do projeto, execute:
 
    ```bash
    npm install
    ```
 
-3. **Execute o servidor de desenvolvimento:**
+2. **Execute o servidor:**
 
    ```bash
    ng serve
    ```
 
-4. **Acesse no navegador:**
-   Abra `http://localhost:4200/`.
+3. **Acesse:**
+   Abra `http://localhost:4200/` no navegador.
 
-**Credenciais para Teste:**
+**Credenciais de Acesso:**
 
-- **Email:** `cliente@exemplo.com`
+- **Usuário:** `cliente@exemplo.com`
 - **Senha:** `123456`
 
 ---
 
-## 🔮 Próximos Passos (Roadmap)
+## 🔮 Próximos Passos (Roadmap v2.0)
 
-Para evoluir este MVP para uma versão 1.0 completa, o roadmap técnico inclui:
+Para a próxima sprint de evolução, estão planejados:
 
-1.  [ ] **Visualização de Dados:** Implementação de gráficos (`ngx-charts` ou `Chart.js`) para evolução patrimonial.
-2.  [ ] **Histórico:** Implementação da tabela de histórico de investimentos (`GET /investimentos`).
-3.  [ ] **Testes Unitários:** Cobertura de testes com Jasmine/Karma focando em Services e Validadores (Meta: 80%).
-4.  [ ] **Acessibilidade:** Melhorias em etiquetas ARIA e navegação por teclado.
+- [ ] Implementação de gráficos de evolução patrimonial (`ngx-charts`).
+- [ ] Testes Unitários com cobertura de 80% (Jasmine/Karma).
+- [ ] Migração das fontes CDN para arquivos locais (segurança de intranet).
 
 ---
 
 <div align="center">
-  Desenvolvido com 💙 e Angular
+  Desenvolvido com 💙 e Angular 19
 </div>

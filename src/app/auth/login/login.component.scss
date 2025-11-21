@@ -1,59 +1,64 @@
-.login-container {
-  height: 100vh;
+/* src/app/auth/login/login.component.scss */
+
+:host {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Fundo degradê suave com as cores da caixa */
-  background: linear-gradient(135deg, var(--caixa-azul) 0%, #004885 100%);
-}
-
-.login-card {
+  min-height: 100vh;
   width: 100%;
-  max-width: 400px;
-  padding: 16px; // Espaçamento interno geral
+  background: linear-gradient(135deg, #0066b3 0%, #004a80 100%);
 }
 
-/* --- Novo CSS para alinhar o Header --- */
-.header-centralizado {
+mat-card {
+  width: 100%;
+  /* AUMENTADO: De 400px para 450px para ficar mais largo */
+  max-width: 450px;
+
+  /* AUMENTADO: De 32px para 40px para dar mais respiro interno */
+  padding: 40px;
+
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
+  overflow: hidden;
+}
+
+.login-header {
   display: flex;
-  flex-direction: column; /* Empilha logo, titulo e subtitulo */
-  align-items: center; /* Centraliza tudo horizontalmente */
-  margin-bottom: 24px; /* Afasta do formulário */
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 32px; /* Mais espaço entre o logo e o form */
 
-  // Força os títulos do Material a centralizarem
-  mat-card-title,
-  mat-card-subtitle {
-    text-align: center;
+  img {
+    max-width: 200px !important; /* Logo um pouquinho maior também */
+    width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+    object-fit: contain;
+  }
+
+  h2 {
     margin: 0;
+    font-size: 1.6rem; /* Título levemente maior */
+    font-weight: 500;
+    color: var(--brand-blue);
   }
 
-  mat-card-title {
-    margin-top: 10px;
-    margin-bottom: 4px;
-    font-weight: bold;
+  p {
+    color: #666;
+    margin-top: 4px;
+    font-size: 1rem;
   }
 }
 
-.logo-container {
-  // Remove o padrão redondo do avatar do Material para caber a logo retangular
-  width: auto !important;
-  height: auto !important;
-  border-radius: 0 !important;
-  margin-right: 0 !important; // Remove margem lateral padrão
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px; /* Mais espaço entre os inputs */
 }
 
-.logo-img {
-  max-width: 180px;
-  display: block;
-}
-/* -------------------------------------- */
-
-.full-width {
-  width: 100%;
-  margin-bottom: 8px;
-}
-
-.btn-entrar {
-  width: 100%; /* Botão esticado fica mais bonito no mobile */
-  margin-top: 8px;
+button {
+  margin-top: 12px;
+  padding: 8px 0; /* Botão mais alto (mais fácil de clicar) */
+  font-size: 1.1rem;
 }

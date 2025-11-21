@@ -1,30 +1,72 @@
-/* Configuração Básica de Cores */
+/* 1. Definição da Identidade Visual */
 :root {
-  --caixa-azul: #0066b3; /* A cor oficial */
-  --caixa-laranja: #f7941e; /* A cor de destaque */
-  --caixa-cinza-bg: #f1f2f2; /* Fundo cinza claro */
+  --brand-blue: #0066b3;
+  --brand-orange: #f7941e;
+  --brand-gray: #f1f2f2;
 }
 
-/* Garante que o app ocupe a tela toda */
+/* 2. Configuração Básica */
 html,
 body {
   height: 100%;
   margin: 0;
 }
+
 body {
   font-family: "Roboto", sans-serif;
-  background-color: var(--caixa-cinza-bg);
+  background-color: var(--brand-gray);
+  color: #333;
 }
 
-/* Classes Utilitárias (para usar no HTML) */
+/* 3. Classes Utilitárias */
 .text-azul {
-  color: var(--caixa-azul);
+  color: var(--brand-blue) !important;
 }
 .text-laranja {
-  color: var(--caixa-laranja);
+  color: var(--brand-orange) !important;
 }
 
-/* Ajuste do Card de Login */
+/* 4. Ajustes Globais Angular Material */
+h1,
+h2,
+.mat-card-title,
+.highlight {
+  color: var(--brand-blue) !important;
+}
+
 mat-card {
   border-radius: 8px !important;
+}
+
+/* Botões */
+.mat-mdc-raised-button.mat-primary:not(:disabled) {
+  background-color: var(--brand-blue) !important;
+  color: white !important;
+}
+.mat-mdc-button.mat-primary {
+  color: var(--brand-blue) !important;
+}
+
+/* Avatar */
+.icon-avatar {
+  background-color: var(--brand-blue) !important;
+  color: white !important;
+}
+
+/* Destaques pontuais em Laranja */
+.risk-profile-highlight,
+.badge.warning {
+  color: var(--brand-orange) !important;
+}
+.mat-mdc-progress-spinner circle {
+  stroke: var(--brand-orange) !important;
+}
+
+/* --- CONTAINER DASHBOARD EXPANDIDO --- */
+.container-dashboard {
+  width: 95%; /* Ocupa 95% da largura da tela */
+  max-width: 1600px; /* Trava em telas ultra-wide */
+  margin: 0 auto; /* Centraliza */
+  padding: 24px 0; /* Padding só vertical, remove laterais para aproveitar espaço */
+  box-sizing: border-box;
 }

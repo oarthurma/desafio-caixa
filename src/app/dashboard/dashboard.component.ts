@@ -19,9 +19,9 @@ export class DashboardComponent implements OnInit {
     private investmentService: InvestmentService
   ) {
     this.simulatorForm = this.fb.group({
-      tipo: ['CDB', Validators.required],
-      valor: [1000, [Validators.required, Validators.min(100)]],
-      prazoMeses: [12, [Validators.required, Validators.min(1)]],
+      tipo: ['', Validators.required],
+      valor: [null, [Validators.required, Validators.min(100)]],
+      prazoMeses: [null, [Validators.required, Validators.min(1)]],
     });
   }
 

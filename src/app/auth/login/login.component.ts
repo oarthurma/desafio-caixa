@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router'; // Importar o Router
-import { AuthService } from '../auth.service'; // Importar nosso serviço
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,54 +9,44 @@ import { AuthService } from '../auth.service'; // Importar nosso serviço
   styleUrls: ['./login.component.scss'],
   standalone: false,
 })
-export class LoginComponent implements OnInit {
-  loginForm!: FormGroup; // A propriedade que vai guardar o formulário
-  hidePassword = true; // Variável para controlar a visibilidade da senha
+export class LoginComponent {
+  loginForm: FormGroup;
+  hidePassword = true;
+  isLoading = false;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
-  ) {} //um "ajudante" para criar formulários
-
-  // ngOnInit - onde vamos inicializar o formulário
-  ngOnInit(): void {
+  ) {
     this.loginForm = this.fb.group({
-      // Definimos os controles: 'email' e 'senha'
-      // O primeiro item do array é o valor inicial (vazio)
-      // O segundo item (ou array) são os validadores
       email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', Validators.required],
     });
   }
 
-  // Método de conveniência para o template
-  get email() {
-    return this.loginForm.get('email');
-  }
-
-  get senha() {
-    return this.loginForm.get('senha');
-  }
-
-  // O método que será chamado no (ngSubmit) do formulário
   onSubmit(): void {
-    if (this.loginForm.invalid) {
-      return;
-    }
+    if (this.loginForm.valid) {
+      this.isLoading = true;
 
-    // Chamar o serviço de login
-    this.authService.login(this.loginForm.value).subscribe({
-      // Callback de SUCESSO
-      next: (response: any) => {
-        console.log('Login bem-sucedido!', response);
-        // Redirecionar para o dashboard
-        this.router.navigate(['/dashboard']);
-      },
-      // Callback de ERRO
-      error: (err: any) => {
-        console.error('Erro no login:', err);
-      },
-    });
+      // Pegamos os valores do formulário (onde se chama 'password')
+      const { email, password } = this.loginForm.value;
+
+      this.authService.login({ email, senha: password }).subscribe({
+        next: (success) => {
+          if (success) {
+            this.router.navigate(['/dashboard']);
+          } else {
+            alert('Login ou senha inválidos');
+          }
+          this.isLoading = false;
+        },
+        error: (err) => {
+          console.error(err);
+          this.isLoading = false;
+          alert('Erro ao tentar conectar.');
+        },
+      });
+    }
   }
 }

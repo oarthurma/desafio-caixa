@@ -1,70 +1,54 @@
 <div class="login-container">
-  <mat-card class="login-card">
-    <mat-card-header class="header-centralizado">
-      <div mat-card-avatar class="logo-container">
-        <img
-          src="/assets/images/logo-caixa.png"
-          alt="Logo CAIXA"
-          class="logo-img"
-        />
-      </div>
-      <mat-card-title class="text-azul">Portal do Investidor</mat-card-title>
-      <mat-card-subtitle>Simulador e Gestão de Ativos</mat-card-subtitle>
-    </mat-card-header>
+  <mat-card>
+    <div class="login-header">
+      <img src="assets/images/logo-caixa.png" alt="Logo CAIXA" width="200" />
+      <h2>Portal do Investidor</h2>
+      <p>Simulador e Gestão de Ativos</p>
+    </div>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <mat-card-content>
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>E-mail</mat-label>
-          <input
-            matInput
-            placeholder="cliente@exemplo.com"
-            formControlName="email"
-          />
-          <mat-error *ngIf="email?.hasError('required')">
-            E-mail é obrigatório.
-          </mat-error>
-          <mat-error *ngIf="email?.hasError('email')">
-            Formato de email inválido.
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Senha</mat-label>
-          <input
-            matInput
-            [type]="hidePassword ? 'password' : 'text'"
-            formControlName="senha"
-          />
-
-          <button
-            mat-icon-button
-            matSuffix
-            (click)="hidePassword = !hidePassword"
-            type="button"
-          >
-            <mat-icon>{{
-              hidePassword ? "visibility_off" : "visibility"
-            }}</mat-icon>
-          </button>
-
-          <mat-error *ngIf="senha?.hasError('required')">
-            Senha é obrigatória.
-          </mat-error>
-        </mat-form-field>
-      </mat-card-content>
-
-      <mat-card-actions align="end">
-        <button
-          mat-flat-button
-          color="primary"
-          type="submit"
-          [disabled]="loginForm.invalid"
-          class="btn-entrar"
+      <mat-form-field appearance="fill">
+        <mat-label>E-mail</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          placeholder="Ex: cliente@exemplo.com"
+        />
+        <mat-error *ngIf="loginForm.get('email')?.invalid"
+          >E-mail inválido</mat-error
         >
-          Acessar Painel
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Senha</mat-label>
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hidePassword = !hidePassword"
+          type="button"
+        >
+          <mat-icon>{{
+            hidePassword ? "visibility_off" : "visibility"
+          }}</mat-icon>
         </button>
-      </mat-card-actions>
+        <mat-error *ngIf="loginForm.get('password')?.invalid"
+          >Senha obrigatória</mat-error
+        >
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="loginForm.invalid || isLoading"
+      >
+        {{ isLoading ? "Entrando..." : "Acessar Painel" }}
+      </button>
     </form>
   </mat-card>
 </div>
