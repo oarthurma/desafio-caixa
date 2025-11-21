@@ -104,9 +104,9 @@ http://localhost:4200/
 
 ## 🔮 Roadmap v2.0
 
-- [ ] Gráficos de evolução patrimonial com `ngx-charts`
-- [ ] Testes unitários com cobertura de 80%
-- [ ] Migração de fontes CDN para arquivos locais (segurança de intranet)
+- [ ] Integração com histórico de investimentos (`GET /investimentos/{clienteId}`)
+- [ ] Implementação de gráficos de evolução patrimonial (ngx-charts/Chart.js)
+- [ ] Testes unitários com cobertura de 80% (Jasmine/Karma)
 
 ---
 
